@@ -35,6 +35,12 @@ var LOGGABLES = [ "activities/log/steps", "activities/log/distance",
     "sleep/minutesAsleep", "sleep/minutesAwake", "sleep/awakeningsCount",
     "body/weight", "body/bmi", "body/fat", ];
 
+//Fitbit API URLs (subject to change)
+var FITBIT_REQUEST_TOKEN_URL = "http://api.fitbit.com/oauth/request_token";
+var FITBIT_ACCESS_TOKEN_URL = "http://api.fitbit.com/oauth/access_token";
+var FITBIT_AUTHORIZE_URL = "http://www.fitbit.com/oauth/authorize";
+
+
 function refreshTimeSeries() {
   // if the user has never configured ask him to do it here
   if (!isConfigured()) {
@@ -250,9 +256,9 @@ function renderFitbitConfigurationDialog() {
 
 function authorize() {
   var oAuthConfig = UrlFetchApp.addOAuthService("fitbit");
-  oAuthConfig.setAccessTokenUrl("http://api.fitbit.com/oauth/access_token");
-  oAuthConfig.setRequestTokenUrl("http://api.fitbit.com/oauth/request_token");
-  oAuthConfig.setAuthorizationUrl("http://api.fitbit.com/oauth/authorize");
+  oAuthConfig.setAccessTokenUrl(FITBIT_ACCESS_TOKEN_URL);
+  oAuthConfig.setRequestTokenUrl(FITBIT_REQUEST_TOKEN_URL);
+  oAuthConfig.setAuthorizationUrl(FITBIT_AUTHORIZE_URL);
   oAuthConfig.setConsumerKey(getConsumerKey());
   oAuthConfig.setConsumerSecret(getConsumerSecret());
 
